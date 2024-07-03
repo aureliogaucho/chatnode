@@ -7,6 +7,9 @@ export const sendMessage = async (req, res) => {
     const { message } = req.body;
     const { id: receiverId } = req.params;
     const senderId = req.user._id;
+    const nome = req.user.username;
+
+    console.log("Nome: ", nome);
 
     if (receiverId === senderId)
       return res
@@ -27,6 +30,7 @@ export const sendMessage = async (req, res) => {
       senderId,
       receiverId,
       message,
+      nome,
     });
 
     if (newMessage) conversation.message.push(newMessage._id);
